@@ -15,13 +15,18 @@ The pipeline includes algorithms for image segmentation, cell contour extraction
 ### DeepCell
 DeepCell is a deep learning-based image segmentation tool developed by the Covert lab in Stanford University. The version currently deployed in the Huang lab is written in Tensorflow. It takes in phase-contrast images as input and generates an output image of the same size with pixels classified as the cell edge highlighted. Several DeepCell models were trained on microscopy images of several morphologically distinct strains, and have been verified to achieve >90% accuracy for most strains tested.
 
+<div align=center><img height="250" src="https://github.com/jsun-bioe/gut-bacteria-cv/blob/main/data/example/deepcell.png"/></div>
+
 ### Morphometrics
 Morphometrics is a MATLAB GUI-based image processing toolbox for bacterial single-cell analysis. Here we use the gradient detection algorithm to extract cell contours from the output images of DeepCell where the pixels in the contours have been highlighted. Morphometrics GUI allows quick parameter tuning. It also supports fast batch processing of high volume data, e.g. time-lapse images. The analysis can be performed locally on a PC, and the output is stored as .mat files for downstream analysis.
 
 ### Lineage Tracking
-In order to capture the growth dynamics of individual strains, a tracking algorithm based on cell contour information is developed to reconstruct cell lineages from tens or hundreds of frames of data in a time-lapse. The code is written in MATLAB to simplify data transder from Morphometrics. For bacteria, growth and division are the key routines in their proliferation. The tracking algorithm can detect division events, and correct for artifacts such as cell missing or merging which may arise from noise in imaging or previous processing steps. The main output of this algorithm is a cell lineage in tree structure.
+In order to capture the growth dynamics of individual strains, a tracking algorithm based on cell contour information is developed to reconstruct cell lineages from tens or hundreds of frames of data in a time-lapse. The code is written in MATLAB to simplify data transder from Morphometrics. For bacteria, growth and division are the key routines in their proliferation. The tracking algorithm can detect division events, and correct for artifacts such as cell missing or merging which may arise from noise in imaging or previous processing steps. The main output of this algorithm is a cell lineage in tree structure. Here are several example lineage trees of different species.
+
+<div align=center><img height="500" src="https://github.com/jsun-bioe/gut-bacteria-cv/blob/main/data/example/tracking.png"/></div>
 
 ### Post-processing
 As one application of high-throughput library imaging and the processing pipeline, we aim to extract growth parameters of individual strains from time-lapse images, including cell size, growth rate, cell cycle duration, etc., which are important single-cell quantities or properties underpinning the basic growth behavior and shape control mechanisms of the diverse species in the gut microbiota. For instance, the birth size, division size and inter-division duration can together indicate the mechanism by which the cell maintain a relatively constant size between cycles.
 
+##
 As a short summary, when combined with computer vision and many other algorithms, high-throughput imaging is becoming a powerful tool for library scale phenotyping, and is expected to offer insights into the human gut microbiota and other complex bacterial communities.
